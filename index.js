@@ -1,5 +1,6 @@
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
+require("dotenv").config();
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
@@ -29,6 +30,7 @@ app.get("/characters", async (req, res) => {
           ts: ts,
           hash: hash,
           offset: offset,
+          limit: 100,
         },
         Headers: {
           Accept: "*/*",
@@ -45,6 +47,7 @@ app.get("/characters", async (req, res) => {
 // accès à la base Comics
 app.get("/comics", async (req, res) => {
   const offset = req.query.offset;
+
   try {
     const response = await axios.get(
       "http://gateway.marvel.com/v1/public/comics",
@@ -72,6 +75,6 @@ app.get("/comics", async (req, res) => {
 //  res.json({ message: "Page not found" });
 // });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
