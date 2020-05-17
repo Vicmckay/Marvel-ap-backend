@@ -1,16 +1,16 @@
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
-require("dotenv").config();
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
+require("dotenv").config();
 
 app.use(formidableMiddleware());
 app.use(cors());
 
 // Mes données APIKey :
-const public_Key = "34e10707f1dbf92c566b0f69eef5572d";
-const private_Key = "b550c96702852a2962507ced9e20d8877a0d3a77";
+const public_Key = process.env.MARVEL_PUBLIC_KEY;
+const private_Key = process.env.MARVEL_SECRET_KEY;
 
 // Générer un Hash :
 const md5 = require("md5");
