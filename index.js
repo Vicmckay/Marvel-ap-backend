@@ -30,7 +30,7 @@ app.get("/characters", async (req, res) => {
           ts: ts,
           hash: hash,
           offset: offset,
-          limit: 100,
+          limit: 40,
         },
         Headers: {
           Accept: "*/*",
