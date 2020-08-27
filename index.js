@@ -46,7 +46,7 @@ router.get("/characters", async (req, res) => {
 });
 
 // accès à la base Comics
-app.get("/comics", async (req, res) => {
+router.get("/comics", async (req, res) => {
   const offset = req.query.offset;
 
   try {
@@ -74,9 +74,7 @@ app.get("/comics", async (req, res) => {
 router.get("/comics/:characterId", async (req, res) => {
   try {
     let ts = uid2(8);
-    let hash = md5(
-      ts + process.env.MARVEL_SECRET_KEY + process.env.MARVEL_PUBLIC_KEY
-    );
+    let hash = md5(ts + secret_key + public_key);
     let characterId = req.params.characterId;
     let offset = req.query.offset;
 
