@@ -70,33 +70,33 @@ app.get("/comics", async (req, res) => {
   }
 });
 
-// router.get("/comics/:characterId", async (req, res) => {
-//   const offset = req.query.offset;
-//   let characterId = req.params.characterId;
+app.get("/comics/:characterId", async (req, res) => {
+  const offset = req.query.offset;
+  let characterId = req.params.characterId;
 
-//   try {
-//     const response = await axios.get(
-//       `http://gateway.marvel.com/v1/public/characters/${characterId}/comics`,
+  try {
+    const response = await axios.get(
+      `http://gateway.marvel.com/v1/public/characters/${characterId}/comics`,
 
-//       {
-//         params: {
-//           apikey: public_Key,
-//           ts: ts,
-//           hash: hash,
-//           offset: offset,
-//           characterId: req.params.characterId,
-//         },
-//         Headers: {
-//           Accept: "*/*",
-//         },
-//       }
-//     );
-//     console.log(response.data);
-//     return res.json(response.data);
-//   } catch (error) {
-//     return res.status(400).json({ message: error.message });
-//   }
-// });
+      {
+        params: {
+          apikey: public_Key,
+          ts: ts,
+          hash: hash,
+          offset: offset,
+          characterId: req.params.characterId,
+        },
+        Headers: {
+          Accept: "*/*",
+        },
+      }
+    );
+    console.log(response.data);
+    return res.json(response.data);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
 
 // Ma route pour intercepter les routes qui n'existent pas :
 // app.all("*", function (req, res) {
