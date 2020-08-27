@@ -81,7 +81,7 @@ app.get("/comics/:characterId", async (req, res) => {
           ts: ts,
           hash: hash,
           offset: offset,
-          characterId: req.params.characterId,
+          characterId: characterId,
         },
         Headers: {
           Accept: "*/*",
