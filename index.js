@@ -3,7 +3,6 @@ const formidableMiddleware = require("express-formidable");
 var cors = require("cors");
 
 const app = express();
-require("dotenv").config();
 
 app.use(formidableMiddleware());
 app.use(cors());
