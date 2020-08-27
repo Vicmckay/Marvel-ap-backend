@@ -73,16 +73,19 @@ router.get("/comics", async (req, res) => {
 
 router.get("/comics/:characterId", async (req, res) => {
   const offset = req.query.offset;
+  let characterId = req.params.characterId;
 
   try {
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters/${charactersId}`,
+      `http://gateway.marvel.com/v1/public/characters/${characterId}`,
+
       {
         params: {
           apikey: public_Key,
           ts: ts,
           hash: hash,
           offset: offset,
+          characterId: req.params.characterId,
         },
         Headers: {
           Accept: "*/*",
