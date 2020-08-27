@@ -1,7 +1,6 @@
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
 const axios = require("axios");
-const router = express.Router();
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
@@ -20,7 +19,7 @@ const ts = uid2(8);
 const hash = md5(ts + private_Key + public_Key);
 
 // accès à la base Marvel
-router.get("/characters", async (req, res) => {
+app.get("/characters", async (req, res) => {
   const offset = req.query.offset;
   try {
     const response = await axios.get(
@@ -46,7 +45,7 @@ router.get("/characters", async (req, res) => {
 });
 
 // accès à la base Comics
-router.get("/comics", async (req, res) => {
+app.get("/comics", async (req, res) => {
   const offset = req.query.offset;
 
   try {
