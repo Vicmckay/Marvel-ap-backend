@@ -77,7 +77,7 @@ router.get("/comics/:characterId", async (req, res) => {
 
   try {
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters/${characterId}`,
+      `http://gateway.marvel.com/v1/public/characters/${characterId}/comics`,
 
       {
         params: {
