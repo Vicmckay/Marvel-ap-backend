@@ -70,7 +70,7 @@ app.get("/comics", async (req, res) => {
   }
 });
 
-router.get("/comics/:characterId", async (req, res) => {
+app.get("/comics/:characterId", async (req, res) => {
   try {
     let ts = uid2(8);
     let hash = md5(
