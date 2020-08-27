@@ -72,20 +72,30 @@ router.get("/comics", async (req, res) => {
 });
 
 router.get("/comics/:characterId", async (req, res) => {
-  try {
-    let ts = uid2(8);
-    let hash = md5(ts + secret_key + public_key);
-    let characterId = req.params.characterId;
-    let offset = req.query.offset;
+  const offset = req.query.offset;
 
+  try {
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters/${characterId}/comics?offset=${offset}&ts=${ts}&apikey=${process.env.MARVEL_PUBLIC_KEY}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters/${charactersId}`,
+      {
+        params: {
+          apikey: public_Key,
+          ts: ts,
+          hash: hash,
+          offset: offset,
+        },
+        Headers: {
+          Accept: "*/*",
+        },
+      }
     );
-    res.json(response.data);
+    console.log(response.data);
+    return res.json(response.data);
   } catch (error) {
-    console.log("characterId/comics", error.message);
+    return res.status(400).json({ message: error.message });
   }
 });
+
 // Ma route pour intercepter les routes qui n'existent pas :
 // app.all("*", function (req, res) {
 //  res.json({ message: "Page not found" });
