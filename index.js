@@ -37,7 +37,6 @@ app.get("/characters", async (req, res) => {
         },
       }
     );
-    console.log(response.data);
     return res.json(response.data);
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -63,7 +62,6 @@ app.get("/comics", async (req, res) => {
         },
       }
     );
-    console.log(response.data);
     return res.json(response.data);
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -77,7 +75,6 @@ app.get("/comics/:characterId", async (req, res) => {
   try {
     const response = await axios.get(
       `http://gateway.marvel.com/v1/public/characters/${characterId}/comics`,
-
       {
         params: {
           apikey: public_Key,
